@@ -8,6 +8,9 @@ using Unity.VisualScripting; // Pro debug vizualizaci
 public class EnemyAI : MonoBehaviour
 {
     public Transform player;
+    private PlayerHiding pHiding;
+    private NavMeshAgent agent;
+    private PlayerController playerController;
 
     [Header("Vision Settings")]
     public float visionRange = 10f;
@@ -21,9 +24,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Suspicion Settings")]
     public float suspicionReactionTime = 1f; // Time to react suspiciously before going back to normal
     public bool isSuspicious = false;
-    private bool isSuspicionTriggered = false;
-    private bool isSuspicionEnded = false;
-    public bool isChasing = false;
+    public bool isSuspicionTriggered = false;
 
     [Header("Debug Colors")]
     public Color visionColor = Color.red;         // Barva kužole vidění
@@ -31,38 +32,48 @@ public class EnemyAI : MonoBehaviour
     public Color normalSoundColor = Color.blue;   // Barva normálního zvukového radiusu
     public Color stealthSoundColor = Color.cyan;  // Barva stealth radiusu
 
-    private NavMeshAgent agent;
-    private PlayerController playerController;
     public Vector3 lastPlayerPosition;
+    private Vector3 lastPosition;
+    private Vector3 currentPosition;
+    private float movementThreshold = 0.1f;
+
+    //private bool logAgentDestination
+    [Header("Patrol Settings")]
+    public float patrolingSpeed;
+    public bool doPatrolling;
+    public Transform[] waypoints;
+    private int currentWaypointIndex;
+    
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        playerController = player.GetComponent<PlayerController>();
         lastPlayerPosition = player.position;
+        currentWaypointIndex = 0;
+
+        playerController = player.GetComponent<PlayerController>();
+        pHiding = FindObjectOfType<PlayerHiding>();
+        agent = GetComponent<NavMeshAgent>();
+
+        if (waypoints.Length > 0)
+        {
+            agent.destination = waypoints[currentWaypointIndex].position;
+            doPatrolling = true;
+        }
     }
 
     void Update()
     {
-        if (!DetectPlayerVision())
+        if (!pHiding.isPlayerHidden) //pokud hrace neni HIDDEN tak funguje detekce normalne 
         {
-            DetectPlayerSound();
-        }
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            // Zkontrolujte, zda agent skutečně dosáhl cíle (je na poslední pozici)
-            if (!agent.pathPending)
+            if (!DetectPlayerVision())
             {
-                // Tady spustíte nějakou akci, například:
-                Debug.Log("Agent dorazil na cílovou pozici!");
-
-                // Můžete volitelně zavolat nějakou metodu nebo spustit nějakou logiku
-                PerformActionWhenReachedDestination();
+                DetectPlayerSound();
             }
         }
-    }
 
+        doPatrol();
+    }
+    #region DetectPlayerVision
     bool DetectPlayerVision()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, visionRange);
@@ -89,11 +100,13 @@ public class EnemyAI : MonoBehaviour
         }
         return false;
     }
-
+    #endregion
+    #region DetectPlayerSound
     void DetectPlayerSound()
     {
+
         float distance = Vector3.Distance(transform.position, player.position);
-        bool isPlayerMoving = Vector3.Distance(lastPlayerPosition, player.position) > 0.5f;
+        bool isPlayerMoving = _isPlayerMoving(); // true - hrac se pohnul
 
         // If the player is standing still and not in stealth, do not trigger the chase
         if (!isPlayerMoving && !playerController.isStealth)
@@ -129,14 +142,17 @@ public class EnemyAI : MonoBehaviour
 
         lastPlayerPosition = player.position;
     }
+    #endregion
 
+    #region StartChase
     void StartChase()
     {
-        agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-        isChasing = true;
-    }
+        doPatrolling = false; // vypne doPatrolling kdyz chasejue hrace
 
+    }
+    #endregion
+    #region SuspicionReaction
     IEnumerator SuspicionReaction()
     {
         // Rotate left and right a few times to simulate suspicion
@@ -182,19 +198,79 @@ public class EnemyAI : MonoBehaviour
             isSuspicious = true; // Now the enemy is aware and in a suspicious state
         }
     }
-
-    void PerformActionWhenReachedDestination()
+    #endregion
+    
+    #region _isPlayerMoving
+    bool _isPlayerMoving()
     {
-        StopChase();
-    }
+        currentPosition = transform.position;
 
-    void StopChase()
+        // Porovnání pozice hráče
+        float distanceMoved = (currentPosition - lastPosition).magnitude;
+
+        // Pokud se pozice změnila o více než pofiltruj
+        if (distanceMoved > movementThreshold)
+        {
+            //Debug.Log("Hráč se HYBE!");
+            lastPosition = currentPosition; // Uložení nové pozice
+            return true;
+        }
+        else
+        {
+            //Debug.Log("Hráč STOJÍ!");
+            return false;
+        }
+    }
+    #endregion
+
+    #region doPatrol
+    private void doPatrol()
     {
-        agent.speed = 0;
-        isSuspicious = false;
-        isChasing = false;
-    }
+        //PATROLLING SPEED
+        if (doPatrolling && agent.speed != patrolingSpeed)
+        {
+            agent.speed = patrolingSpeed;
+        }
 
+        //CHASING SPEED
+        if(!doPatrolling)
+        {
+            agent.speed = chaseSpeed;
+        }
+
+        if (didAgentReachDestination())
+        {
+            setNextDestination();
+            doPatrolling = true;
+        }
+    }
+    #endregion
+    #region setNextDestination
+    void setNextDestination()
+    {
+        if (waypoints.Length <= 0)
+        {
+            return;
+        }
+        else
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            agent.SetDestination(waypoints[currentWaypointIndex].position);
+        }
+    }
+    #endregion
+    #region didAgentReachDestination
+    private bool didAgentReachDestination()
+    {
+        if(agent.remainingDistance < 0.5f)
+        {
+            return true;
+        }
+        return false;
+    }
+    #endregion
+
+    #region Gixmos
     // Debug drawing for visualizing detection zones
     void OnDrawGizmos()
     {
@@ -222,4 +298,5 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = stealthSoundColor;
         Gizmos.DrawWireSphere(transform.position, stealthSoundRange);
     }
+    #endregion
 }

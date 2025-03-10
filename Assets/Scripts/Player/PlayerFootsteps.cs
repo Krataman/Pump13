@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class PlayerFootsteps : MonoBehaviour
 {
+    [Header("Walk Settings")]
+    public float walkStepInterval = 0.5f;
+    public float walkVolume = 0.7f;
+
+    [Header("Sprint Settings")]
+    public float sprintStepInterval = 0.3f;
+    public float sprintVolume = 1.0f;
+
+    [Header("Crouch Settings")]
+    public float crouchStepInterval = 0.8f;
+    public float crouchVolume = 0.4f;
+
+    [Header("Audio Settings")]
     public AudioSource audioSource;
     public AudioClip[] grassSteps;
     public AudioClip[] tileSteps;
     public AudioClip[] gravelSteps;
-
-    public float walkStepInterval = 0.5f;   // Interval pro chůzi
-    public float sprintStepInterval = 0.3f; // Interval pro sprint
-    public float crouchStepInterval = 0.8f; // Interval pro plížení
-
-    public float walkVolume = 0.7f;
-    public float sprintVolume = 1.0f;
-    public float crouchVolume = 0.4f;
 
     private float stepTimer = 0f;
     private PlayerController playerController;
@@ -25,7 +30,7 @@ public class PlayerFootsteps : MonoBehaviour
 
     void Update()
     {
-        if (IsMoving() && IsGrounded())
+        if (IsMoving())
         {
             stepTimer += Time.deltaTime;
 
@@ -44,6 +49,7 @@ public class PlayerFootsteps : MonoBehaviour
 
     void PlayFootstepSound()
     {
+        //Debug.Log("Footstep sound played");
         string groundTag = GetGroundTag();
 
         AudioClip[] stepSounds = tileSteps; // Výchozí zvuk (dlaždice)
@@ -55,13 +61,14 @@ public class PlayerFootsteps : MonoBehaviour
         {
             audioSource.volume = GetStepVolume(); // Nastavení hlasitosti podle rychlosti
             audioSource.PlayOneShot(stepSounds[Random.Range(0, stepSounds.Length)]);
+            
         }
     }
 
     string GetGroundTag()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 10f))
         {
             return LayerMask.LayerToName(hit.collider.gameObject.layer);
         }

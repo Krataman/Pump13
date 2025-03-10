@@ -362,6 +362,7 @@
 "Assets/Scripts/Others/EnemyDebug.cs"
 "Assets/Scripts/Player/PlayerController.cs"
 "Assets/Scripts/Player/PlayerFootsteps.cs"
+"Assets/Scripts/Player/PlayerHiding.cs"
 -langversion:9.0
 /deterministic
 /optimize+

@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|c:\\users\\denis\\documents\\unityprojects\\pump13\\assets\\scripts\\enemy\\enemyai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|c:\\users\\denis\\documents\\unityprojects\\pump13\\assets\\scripts\\player\\playerhiding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerhiding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\assets\\scripts\\enemy\\enemyai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|c:\\users\\denis\\documents\\unityprojects\\pump13\\assets\\scripts\\others\\enemydebug.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\assets\\scripts\\others\\enemydebug.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\enemydebug.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\assets\\scripts\\player\\playerfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D84E2DE1-0D4B-FDDC-906A-56665D54D6CF}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EnemyDebug.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Others\\EnemyDebug.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\EnemyDebug.cs",
-              "ToolTip": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Others\\EnemyDebug.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Others\\EnemyDebug.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDEAAABDAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "PlayerFootsteps.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "ToolTip": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAwwDMAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T11:43:31.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T10:27:39.021Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EnemyAI.cs",
               "DocumentMoniker": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Enemy\\EnemyAI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyAI.cs",
               "ToolTip": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Enemy\\EnemyAI.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyAI.cs",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAYwOIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-04T11:43:28.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerHiding.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Player\\PlayerHiding.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHiding.cs",
+              "ToolTip": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Player\\PlayerHiding.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerHiding.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T14:47:41.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EnemyDebug.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Others\\EnemyDebug.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\EnemyDebug.cs",
+              "ToolTip": "C:\\Users\\denis\\Documents\\UnityProjects\\Pump13\\Assets\\Scripts\\Others\\EnemyDebug.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Others\\EnemyDebug.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwC8AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T11:43:31.852Z",
               "EditorCaption": ""
             }
           ]

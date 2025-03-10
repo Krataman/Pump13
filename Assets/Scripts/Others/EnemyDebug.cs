@@ -33,23 +33,25 @@ public class EnemyDebug : MonoBehaviour
 
         GUIStyle style = new GUIStyle();
         style.fontSize = 16;
-        style.normal.textColor = Color.white;
+        style.richText = true;
 
         GUILayout.BeginArea(new Rect(10, 10, 300, 400));
-        GUILayout.Label("--- Enemy AI Debug Info ---", style);
-        GUILayout.Label($"Player Position: {player.position}", style);
-        GUILayout.Label($"Enemy Position: {enemyAI.transform.position}", style);
-        GUILayout.Label($"Enemy Destination: {enemyAI.GetComponent<NavMeshAgent>().destination}", style);
-        GUILayout.Label($"Enemy Speed: {enemyAI.GetComponent<NavMeshAgent>().speed}", style);
-        GUILayout.Label($"Vision Range: {enemyAI.visionRange}", style);
-        GUILayout.Label($"Vision Angle: {enemyAI.visionAngle}", style);
-        GUILayout.Label($"Normal Sound Range: {enemyAI.normalSoundRange}", style);
-        GUILayout.Label($"Stealth Sound Range: {enemyAI.stealthSoundRange}", style);
-        GUILayout.Label($"Chase Speed: {enemyAI.chaseSpeed}", style);
-        GUILayout.Label($"Is Suspicious: {enemyAI.isSuspicious}", style);
-        GUILayout.Label($"Is Chasing: {enemyAI.isChasing}", style);
-        GUILayout.Label($"Is Stealth Mode: {playerController?.isStealth}", style);
-        GUILayout.Label($"Last Player Position: {enemyAI.lastPlayerPosition}", style);
+        GUILayout.Label("<color=white>--- Enemy AI Debug Info ---</color>", style);
+        GUILayout.Label($"<color=green>Player Position: {player.position} </color>", style);
+        GUILayout.Label($"<color=green>Last Player Position: {enemyAI.lastPlayerPosition} </color>", style);
+
+        GUILayout.Label($"<color=red>Enemy Position: {enemyAI.transform.position} </color>", style);
+        GUILayout.Label($"<color=red>Enemy Destination: {enemyAI.GetComponent<NavMeshAgent>().destination} </color>", style);
+
+        GUILayout.Label($"<color=blue>Enemy Speed: {enemyAI.GetComponent<NavMeshAgent>().speed} </color>", style);
+        GUILayout.Label($"<color=blue>Patrolling speed: {enemyAI.patrolingSpeed} </color>", style);
+        GUILayout.Label($"<color=blue>Chase Speed: {enemyAI.chaseSpeed} </color>", style);
+
+        GUILayout.Label($"<color=yellow>Is Suspicious: {enemyAI.isSuspicious} </color>", style);
+        GUILayout.Label($"<color=yellow>Is Suspicion Triggered: {enemyAI.isSuspicionTriggered} </color>", style);
+        GUILayout.Label($"<color=yellow>Do PATROLLING: {enemyAI.doPatrolling} </color>", style);
+        GUILayout.Label($"<color=yellow>Is Stealth Mode: {playerController?.isStealth} </color>", style);
+
         GUILayout.EndArea();
     }
 }
